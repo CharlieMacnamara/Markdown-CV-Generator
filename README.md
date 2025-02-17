@@ -15,7 +15,7 @@ A modern, minimalist CV/resume generator that converts markdown to beautifully s
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/Markdown-CV-Generator.git
+git clone https://github.com/charliemacnamara/Markdown-CV-Generator.git
 cd Markdown-CV-Generator
 
 # Install dependencies
@@ -50,43 +50,6 @@ This will:
 - Watch for changes in your markdown and CSS files
 - Auto-reload when changes are detected
 
-## CV Structure
-
-Your markdown CV should follow this structure:
-
-```markdown
-# Title|Your Name
-
-## Details
-**Phone**  
-[+1 234 567 890](tel:+1234567890)
-
-## Links
-[Portfolio](https://yoursite.com)
-
-## Skills
-- Skill 1
-- Skill 2
-
-## Profile
-Your professional summary...
-
-## Employment History
-# Job Title
-Period
-
-Description
-
-Key achievements:
-- Achievement 1
-- Achievement 2
-
-## References
-### Reference Name
-Title  
-Contact details
-```
-
 ## Customization
 
 ### Styling
@@ -115,20 +78,6 @@ program
     const theme = options.theme || 'default';
     // Theme handling logic
   });
-```
-
-## Project Structure
-
-```
-.
-├── src/
-│   ├── cli.js          # CLI implementation
-│   ├── index.js        # Development server
-│   └── styles/         # CSS styles
-├── dist/               # Built CSS
-├── example.md         # Example CV
-├── package.json
-└── README.md
 ```
 
 ## Commands
