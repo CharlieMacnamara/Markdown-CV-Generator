@@ -15,7 +15,7 @@ A modern, minimalist CV/resume generator that converts markdown to beautifully s
 
 ```bash
 # Clone the repository
-git clone https://github.com/charliemacnamara/Markdown-CV-Generator.git
+git clone https://github.com/yourusername/Markdown-CV-Generator.git
 cd Markdown-CV-Generator
 
 # Install dependencies
@@ -36,6 +36,9 @@ markdowncv build --default
 ```
 
 The generated PDF will be saved as `[title]-[name]-resume.pdf` in the project root.
+
+Example: 
+![Developer Resume](developer-john-doe-resume-1.png)
 
 ### Development Mode
 
