@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build output
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Generated PDFs
+*-resume.pdf
+
+# Temporary files
+temp-*.html
+
+!dist/.gitkeep 

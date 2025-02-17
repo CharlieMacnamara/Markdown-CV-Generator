@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'Trebuchet MS';
+        src: local('Trebuchet MS');
+    }
+
+    body {
+        @apply m-0 p-0 bg-white antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply m-0 p-0;
+    }
+    
+    a {
+        @apply text-blue-600 no-underline hover:text-blue-800 transition-colors duration-200;
+    }
+    
+    ul {
+        @apply m-0 p-0 list-none;
+    }
+    
+    p {
+        @apply m-0 leading-relaxed;
+    }
+}
+
+@layer components {
+    /* Main container */
+    .cv-container {
+        @apply min-h-screen max-w-[210mm] mx-auto bg-white p-4 relative overflow-hidden;
+    }
+
+    /* Header */
+    .cv-header {
+        @apply w-full pt-2 pb-3 text-center relative z-20;
+    }
+
+    .cv-title-outer {
+        @apply inline-block bg-white rounded-lg shadow-sm px-2;
+    }
+
+    .cv-title {
+        @apply px-8 py-2 text-[22px] font-['Trebuchet_MS'] tracking-wide relative text-slate-900;
+    }
+
+    .cv-title::after {
+        content: '';
+        @apply absolute bottom-1 left-1/2 transform -translate-x-1/2;
+        height: 1px;
+        width: 80%;
+        background: linear-gradient(90deg, 
+            rgba(226, 232, 240, 0) 0%,
+            rgba(226, 232, 240, 1) 25%,
+            rgba(226, 232, 240, 1) 75%,
+            rgba(226, 232, 240, 0) 100%
+        );
+    }
+
+    /* Background split */
+    .cv-container::before {
+        content: '';
+        @apply absolute top-0 left-0 h-full bg-slate-50;
+        width: calc(33.333% + 20mm);
+        margin-left: -20mm;
+        z-index: 1;
+    }
+
+    /* Content */
+    .cv-content {
+        @apply relative grid grid-cols-3 mt-2 gap-4 z-10;
+    }
+
+    /* Columns */
+    .cv-left {
+        @apply relative px-4 py-2 space-y-3 z-10;
+    }
+
+    .cv-right {
+        @apply relative col-span-2 px-4 py-2 space-y-3 z-10;
+    }
+
+    /* Section headers */
+    .section-title {
+        @apply text-sm uppercase text-slate-900 pb-1 mb-2 font-['Trebuchet_MS'] tracking-wider;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    /* Details */
+    .details-item {
+        @apply mb-1.5 last:mb-0 text-slate-900 text-sm;
+    }
+
+    .details-label {
+        @apply font-semibold text-slate-900 mb-0.5 block;
+    }
+
+    /* Links styling */
+    .portfolio-link {
+        @apply text-blue-600 hover:text-blue-800 transition-colors duration-200 font-medium;
+        position: relative;
+        display: inline-block;
+    }
+
+    .portfolio-link::after {
+        content: '↗';
+        @apply ml-1 text-blue-500 text-sm;
+    }
+
+    .portfolio-link:hover::after {
+        @apply text-blue-700;
+    }
+
+    /* Skills */
+    .skills-list {
+        @apply space-y-1;
+    }
+
+    .skills-list li {
+        @apply text-slate-900 text-sm py-0.5 px-2 rounded bg-white/80 shadow-sm font-medium;
+    }
+
+    /* Employment */
+    .job {
+        @apply mb-2 last:mb-0 bg-white rounded-lg p-2 shadow-sm;
+    }
+
+    .job-title {
+        @apply text-base font-semibold text-slate-900 mb-0;
+    }
+
+    .job-period {
+        @apply text-slate-600 text-xs mb-1 block font-medium;
+    }
+
+    .job-description {
+        @apply text-slate-900 mb-1.5 leading-snug text-sm;
+    }
+
+    .achievements-header {
+        @apply text-slate-900 font-semibold mb-0.5 text-sm;
+    }
+
+    .achievements-list {
+        @apply space-y-0.5 ml-4;
+    }
+
+    .achievements-list li {
+        @apply text-slate-800 relative pl-2 text-sm leading-tight;
+    }
+
+    .achievements-list li::before {
+        content: '';
+        @apply absolute left-[-0.75rem] top-[0.4rem] w-1 h-1 bg-slate-400 rounded-full;
+    }
+
+    /* References */
+    .references {
+        @apply mt-3 pt-2 border-t border-gray-200 space-y-3;
+    }
+
+    .reference-name {
+        @apply text-sm font-semibold text-slate-900 mb-0.5;
+    }
+
+    .reference-title {
+        @apply text-slate-800 font-medium mb-0.5 block text-sm;
+    }
+
+    .reference-contact {
+        @apply text-slate-600 text-xs;
+    }
+
+    .reference-contact a {
+        @apply text-blue-600 hover:text-blue-800 transition-colors duration-200;
+    }
+}
+
+/* Layout and background */
+body {
+    @apply m-0 p-0 min-h-screen;
+}
+
+.page-container {
+    @apply relative grid grid-cols-3 min-h-screen;
+}
+
+/* Left section with gray background */
+.left-section {
+    @apply bg-gray-50 min-h-screen relative;
+}
+
+.left-content {
+    @apply py-8 px-8;
+}
+
+/* Right section */
+.right-section {
+    @apply col-span-2 bg-white relative;
+}
+
+.right-content {
+    @apply py-8 px-8;
+}
+
+/* Content spacing */
+.content-wrapper {
+    @apply mt-32;
+}
+
+/* Base layout */
+body {
+    @apply m-0 p-0 min-h-screen;
+}
+
+/* Section styling */
+.section-container {
+    @apply mb-4 last:mb-0;
+}
+
+/* Main container */
+.cv-container {
+    @apply relative min-h-screen;
+}
+
+/* Header section */
+.header-section {
+    @apply absolute top-0 left-0 right-0 bg-white py-6 z-10;
+}
+
+.header-content {
+    @apply text-center;
+}
+
+/* Left column */
+.left-column {
+    @apply pt-28 px-6;  /* Adjust pt based on header height */
+}
+
+/* Right column */
+.right-column {
+    @apply col-span-2 pt-28 px-6 bg-white;  /* Adjust pt based on header height */
+}
+
+/* Other styles remain the same */ 
