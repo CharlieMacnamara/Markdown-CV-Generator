@@ -9,7 +9,7 @@
     }
 
     body {
-        @apply m-0 p-0 bg-white antialiased;
+        @apply m-0 p-0 bg-slate-50 antialiased text-slate-900;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -25,158 +25,176 @@
     }
     
     p {
-        @apply m-0 leading-relaxed;
+        @apply m-0 leading-normal;
     }
 }
 
 @layer components {
+    /* Page setup for A4 */
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
     /* Main container */
     .cv-container {
-        @apply min-h-screen max-w-[210mm] mx-auto bg-white p-4 relative overflow-hidden;
+        @apply relative bg-white mx-auto;
+        width: 210mm;
+        min-height: 297mm;
+        max-height: 297mm;
+    }
+
+    /* Two-tone split */
+    .cv-split-bg {
+        @apply fixed top-0 left-0 w-[70mm] h-full bg-slate-50;
+    }
+
+    /* Content wrapper */
+    .cv-wrapper {
+        @apply relative flex flex-col h-full;
     }
 
     /* Header */
     .cv-header {
-        @apply w-full pt-2 pb-3 text-center relative z-20;
+        @apply w-full py-6 text-center bg-transparent;
     }
 
     .cv-title-outer {
-        @apply inline-block bg-white rounded-lg shadow-sm px-2;
+        @apply inline-block bg-white px-6 py-2 rounded-lg shadow-sm;
     }
 
     .cv-title {
-        @apply px-8 py-2 text-[22px] font-['Trebuchet_MS'] tracking-wide relative text-slate-900;
+        @apply text-xl font-['Trebuchet_MS'] tracking-wide text-slate-900;
     }
 
-    .cv-title::after {
-        content: '';
-        @apply absolute bottom-1 left-1/2 transform -translate-x-1/2;
-        height: 1px;
-        width: 80%;
-        background: linear-gradient(90deg, 
-            rgba(226, 232, 240, 0) 0%,
-            rgba(226, 232, 240, 1) 25%,
-            rgba(226, 232, 240, 1) 75%,
-            rgba(226, 232, 240, 0) 100%
-        );
-    }
-
-    /* Background split */
-    .cv-container::before {
-        content: '';
-        @apply absolute top-0 left-0 h-full bg-slate-50;
-        width: calc(33.333% + 20mm);
-        margin-left: -20mm;
-        z-index: 1;
-    }
-
-    /* Content */
+    /* Main content */
     .cv-content {
-        @apply relative grid grid-cols-3 mt-2 gap-4 z-10;
+        @apply flex-1 flex;
     }
 
     /* Columns */
     .cv-left {
-        @apply relative px-4 py-2 space-y-3 z-10;
+        @apply w-[70mm] p-6 space-y-6;
     }
 
     .cv-right {
-        @apply relative col-span-2 px-4 py-2 space-y-3 z-10;
+        @apply flex-1 p-6 space-y-6 bg-white;
     }
 
-    /* Section headers */
+    /* Section styling */
+    .section {
+        @apply relative;
+    }
+
     .section-title {
-        @apply text-sm uppercase text-slate-900 pb-1 mb-2 font-['Trebuchet_MS'] tracking-wider;
-        border-bottom: 1px solid #e2e8f0;
+        @apply text-sm uppercase font-['Trebuchet_MS'] tracking-wider text-slate-900 pb-2 mb-3 border-b border-slate-200;
+    }
+
+    .section-content {
+        @apply space-y-3;
     }
 
     /* Details */
     .details-item {
-        @apply mb-1.5 last:mb-0 text-slate-900 text-sm;
+        @apply bg-white/90 rounded p-3 text-sm text-slate-700 shadow-sm;
     }
 
     .details-label {
-        @apply font-semibold text-slate-900 mb-0.5 block;
+        @apply font-semibold text-slate-900 mb-1 block;
     }
 
-    /* Links styling */
+    /* Links */
     .portfolio-link {
-        @apply text-blue-600 hover:text-blue-800 transition-colors duration-200 font-medium;
-        position: relative;
-        display: inline-block;
+        @apply inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800;
     }
 
     .portfolio-link::after {
         content: '↗';
-        @apply ml-1 text-blue-500 text-sm;
-    }
-
-    .portfolio-link:hover::after {
-        @apply text-blue-700;
+        @apply ml-1 text-xs opacity-75;
     }
 
     /* Skills */
     .skills-list {
-        @apply space-y-1;
+        @apply space-y-2;
     }
 
     .skills-list li {
-        @apply text-slate-900 text-sm py-0.5 px-2 rounded bg-white/80 shadow-sm font-medium;
+        @apply bg-white/90 rounded p-2 text-sm font-medium text-slate-700 shadow-sm;
     }
 
     /* Employment */
-    .job {
-        @apply mb-2 last:mb-0 bg-white rounded-lg p-2 shadow-sm;
+    .job-entry {
+        @apply mb-6 last:mb-0;
     }
 
     .job-title {
-        @apply text-base font-semibold text-slate-900 mb-0;
+        @apply text-base font-semibold text-slate-900 mb-1;
     }
 
     .job-period {
-        @apply text-slate-600 text-xs mb-1 block font-medium;
+        @apply inline-block text-xs font-medium text-slate-600 bg-slate-100 px-2 py-1 rounded-full mb-2;
     }
 
     .job-description {
-        @apply text-slate-900 mb-1.5 leading-snug text-sm;
+        @apply text-sm text-slate-700 mb-3;
     }
 
     .achievements-header {
-        @apply text-slate-900 font-semibold mb-0.5 text-sm;
+        @apply text-sm font-semibold text-slate-900 mb-2;
     }
 
     .achievements-list {
-        @apply space-y-0.5 ml-4;
+        @apply space-y-2 ml-4;
     }
 
     .achievements-list li {
-        @apply text-slate-800 relative pl-2 text-sm leading-tight;
+        @apply text-sm text-slate-700 relative pl-2;
     }
 
     .achievements-list li::before {
         content: '';
-        @apply absolute left-[-0.75rem] top-[0.4rem] w-1 h-1 bg-slate-400 rounded-full;
+        @apply absolute left-[-0.75rem] top-[0.45rem] w-1.5 h-1.5 bg-blue-500 rounded-full;
     }
 
     /* References */
-    .references {
-        @apply mt-3 pt-2 border-t border-gray-200 space-y-3;
+    .reference-entry {
+        @apply mb-4 last:mb-0;
     }
 
     .reference-name {
-        @apply text-sm font-semibold text-slate-900 mb-0.5;
+        @apply text-sm font-semibold text-slate-900 mb-1;
     }
 
     .reference-title {
-        @apply text-slate-800 font-medium mb-0.5 block text-sm;
+        @apply text-sm text-slate-700 mb-1;
     }
 
     .reference-contact {
-        @apply text-slate-600 text-xs;
+        @apply text-xs text-slate-600;
     }
 
-    .reference-contact a {
-        @apply text-blue-600 hover:text-blue-800 transition-colors duration-200;
+    /* Print optimizations */
+    @media print {
+        body {
+            @apply bg-white m-0;
+        }
+
+        .cv-container {
+            @apply shadow-none print:w-[210mm] print:h-[297mm] m-0;
+        }
+
+        .cv-split-bg {
+            @apply bg-slate-50/90 print:fixed print:w-[70mm];
+        }
+
+        .details-item,
+        .skills-list li {
+            @apply bg-white/80 shadow-none;
+        }
+
+        .cv-title-outer {
+            @apply shadow-none;
+        }
     }
 }
 

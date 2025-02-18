@@ -29,22 +29,25 @@ app.get('/', async (req, res) => {
             </head>
             <body>
                 <div class="cv-container">
-                    <header class="cv-header">
-                        <div class="cv-title-outer">
-                            <h1 class="cv-title">
-                                ${md.render(markdownContent).split('\n')[0].replace(/<[^>]*>/g, '')}
-                            </h1>
-                        </div>
-                    </header>
+                    <div class="cv-split-bg"></div>
+                    <div class="cv-wrapper">
+                        <header class="cv-header">
+                            <div class="cv-title-outer">
+                                <h1 class="cv-title">
+                                    ${md.render(markdownContent).split('\n')[0].replace(/<[^>]*>/g, '')}
+                                </h1>
+                            </div>
+                        </header>
 
-                    <main class="cv-content">
-                        <div class="cv-left">
-                            ${generateLeftColumn(markdownContent)}
-                        </div>
-                        <div class="cv-right">
-                            ${generateRightColumn(markdownContent)}
-                        </div>
-                    </main>
+                        <main class="cv-content">
+                            <div class="cv-left">
+                                ${generateLeftColumn(markdownContent)}
+                            </div>
+                            <div class="cv-right">
+                                ${generateRightColumn(markdownContent)}
+                            </div>
+                        </main>
+                    </div>
                 </div>
             </body>
             </html>
@@ -79,10 +82,12 @@ function generateLeftColumn(markdown) {
             }
             
             return `
-                <div class="section">
+                <section class="section">
                     <h2 class="section-title">${title.trim()}</h2>
-                    ${sectionContent}
-                </div>
+                    <div class="section-content">
+                        ${sectionContent}
+                    </div>
+                </section>
             `;
         })
         .join('');
@@ -100,7 +105,7 @@ function generateRightColumn(markdown) {
             
             if (title.trim() === 'Employment History') {
                 sectionContent = sectionContent
-                    .replace(/<h1>/g, '<div class="job"><h3 class="job-title">')
+                    .replace(/<h1>/g, '<div class="job-entry"><h3 class="job-title">')
                     .replace(/<\/h1>/g, '</h3>')
                     .replace(/<p>((Jan 2021 — Present|Jun 2018 — Dec 2020))<\/p>/g, 
                         '<span class="job-period">$1</span>')
@@ -112,17 +117,20 @@ function generateRightColumn(markdown) {
                     .replace(/<\/ul>\s*(?!<div class="job">|$)/g, '</ul></div>');
             } else if (title.trim() === 'References') {
                 sectionContent = sectionContent
-                    .replace(/<h3>/g, '<h3 class="reference-name">')
+                    .replace(/<h3>/g, '<div class="reference-entry"><h3 class="reference-name">')
                     .replace(/<p>/g, '<p class="reference-title">')
                     .replace(/(<a href="mailto:|<a href="tel:)([^"]+)("[^>]*>)/g, 
-                        '<span class="reference-contact">$1$2$3');
+                        '<span class="reference-contact">$1$2$3')
+                    .replace(/<\/p>\s*(?!<div class="reference-entry">|$)/g, '</p></div>');
             }
             
             return `
-                <div class="section">
+                <section class="section">
                     <h2 class="section-title">${title.trim()}</h2>
-                    ${sectionContent}
-                </div>
+                    <div class="section-content">
+                        ${sectionContent}
+                    </div>
+                </section>
             `;
         })
         .join('');
