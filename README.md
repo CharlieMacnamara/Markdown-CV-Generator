@@ -6,6 +6,7 @@ A modern, minimalist CV/resume generator that converts markdown to beautifully s
 
 - 📝 Write your CV in simple Markdown
 - 🎨 Modern, professional design with customizable styles
+- 🌓 Light and dark themes available
 - 🖨 Export to PDF with perfect formatting
 - 💻 Live preview during development
 - 🎯 Responsive layout with proper A4 sizing
@@ -30,9 +31,14 @@ npm install -g .
 ### Quick Start
 
 1. Edit `example.md` with your CV content
-2. Generate PDF:
+2. Generate PDF with default light theme:
 ```bash
 markdowncv build --default
+```
+
+Or use the dark theme:
+```bash
+markdowncv build --default-dark
 ```
 
 The generated PDF will be saved as `[title]-[name]-resume.pdf` in the project root.
@@ -59,15 +65,26 @@ This will:
 
 The CV uses Tailwind CSS for styling. Main style files:
 - `src/styles/input.css`: Base styles and components
-- `src/styles/themes/`: Custom theme directory (for future themes)
+- `src/styles/themes/`: Theme directory containing light and dark themes
+
+### Available Themes
+
+1. Default Light Theme (`--default`)
+   - Clean, professional design with white background
+   - Optimal for printing and traditional CV submissions
+
+2. Default Dark Theme (`--default-dark`)
+   - Modern dark mode with careful color selection
+   - Perfect for digital viewing and tech-focused roles
+   - Automatically converts to light theme when printing
 
 ### Creating New Themes
 
 1. Create a new theme file in `src/styles/themes/`:
 ```css
-/* src/styles/themes/modern.css */
+/* src/styles/themes/custom.css */
 @layer components {
-  .cv-container {
+  .custom-theme {
     /* Your styles */
   }
 }
@@ -76,7 +93,7 @@ The CV uses Tailwind CSS for styling. Main style files:
 2. Update the CLI to support your theme:
 ```javascript
 program
-  .option('--theme <name>', 'Use custom theme')
+  .option('--theme <n>', 'Use custom theme')
   .action(async (options) => {
     const theme = options.theme || 'default';
     // Theme handling logic
@@ -85,7 +102,8 @@ program
 
 ## Commands
 
-- `markdowncv build --default`: Generate PDF with default style
+- `markdowncv build --default`: Generate PDF with default light theme
+- `markdowncv build --default-dark`: Generate PDF with dark theme
 - `markdowncv serve`: Start development server
 - `npm run dev`: Start development environment
 - `npm run build:css`: Build CSS only

@@ -26,6 +26,7 @@ program
 program.command('build')
     .description('Build CV as PDF')
     .option('--default', 'Use default style')
+    .option('--default-dark', 'Use default dark style')
     .action(async (options) => {
         let server;
         let tempHtmlPath;
@@ -78,7 +79,7 @@ program.command('build')
             
             // Generate HTML content
             startSpinner('Generating HTML...');
-            const html = generateHTML(markdownContent, cssContent);
+            const html = generateHTML(markdownContent, cssContent, options);
             
             // Write HTML to temporary file
             tempHtmlPath = path.join(process.cwd(), 'temp-cv.html');
@@ -201,7 +202,8 @@ program.command('serve')
         });
     });
 
-function generateHTML(markdownContent, cssContent) {
+function generateHTML(markdownContent, cssContent, options) {
+    const theme = options['defaultDark'] ? 'dark-theme' : '';
     return `
         <!DOCTYPE html>
         <html lang="en">
@@ -211,7 +213,7 @@ function generateHTML(markdownContent, cssContent) {
             <style>${cssContent}</style>
         </head>
         <body>
-            <div class="cv-container">
+            <div class="cv-container ${theme}">
                 <header class="cv-header">
                     <div class="cv-title-outer">
                         <h1 class="cv-title">
