@@ -16,52 +16,45 @@
 
 - Full-Stack Development
 - Cloud Architecture (AWS)
-- System Design
+- System Design & Architecture
 - API Development
-- CI/CD & DevOps
-- Test Automation
+- CI/CD Pipelines & DevOps
+- Test Automation (Sometimes it even works)
 
 ## Profile
 
-Senior software engineer with expertise in scalable systems and cloud architecture. Proven track record of delivering high-performance applications and mentoring development teams.
+I am a software engineer specializing in scalable systems. I build apps that just work. My approach fuses architectural thinking with practical solutions—all that generic stuff.
 
 ## Employment History
 
-# Senior Software Engineer, Tech Corp
+### Senior Software Engineer, Tech Corp
 Jan 2021 — Present
 
-Led development of cloud-native applications and microservices architecture, improving system scalability by 40%.
+Managed not to break anything important.
 
 Key achievements:
 
-- Architected distributed systems serving 1M+ daily users
-- Reduced deployment time by 60% through CI/CD optimization
-- Mentored 5 junior developers to senior positions
+- Cut deployment time by 60%. Broke several things.
+- Mentored five junior developers to senior positions. They now make my coffee.
+- Created docs that cut onboarding time by 35%.
 
-# Software Developer, StartUp Inc
-Jun 2018 — Dec 2020
+### Software Engineer, InnovateTech
+Mar 2018 — Dec 2020
 
-Developed full-stack applications and established core infrastructure.
+Developed RESTful APIs for the company's flagship. Enabled third-party integrations.
 
-Achievements:
+Key achievements:
 
-- Built real-time analytics platform processing 500K events/day
-- Reduced API response times by 70%
-- Implemented automated testing with 90% coverage
+- Boosted test coverage from 45% to 85%. The untested 15% keeps me up at night.
+- Built intuitive UIs for complex data. Users thanked me. This was suspicious.
+- Optimized database queries by 30%.
 
 ## References
 
 ### Dr. Sarah Chen
 Director of Engineering, CloudScale Solutions  
-[schen@cloudscale.tech](mailto:schen@cloudscale.tech) | [+1 (555) 234-5678](tel:+15552345678)
+[schen@cloudscale.tech](mailto:schen@cloudscale.tech) [+1 (555) 234-5678](tel:+15552345678)
 
 ### Michael Rodriguez
 VP of Technology, InnovateX  
-[mrodriguez@innovatex.io](mailto:mrodriguez@innovatex.io) | [+1 (555) 345-6789](tel:+15553456789)
-
-## Education
-
-### Bachelor of Science in Computer Science
-
-University of Technology  
-2014 — 2018 
+[mrodriguez@innovatex.io](mailto:mrodriguez@innovatex.io) [+1 (555) 345-6789](tel:+15553456789)

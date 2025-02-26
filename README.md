@@ -41,6 +41,11 @@ Or use the dark theme:
 markdowncv build --default-dark
 ```
 
+Generate with the new soft light theme (easier on the eyes):
+```bash
+markdowncv build --light
+```
+
 The generated PDF will be saved as `[title]-[name]-resume.pdf` in the project root.
 
 Example: 
@@ -58,6 +63,12 @@ This will:
 - Start a local server at http://localhost:3000
 - Watch for changes in your markdown and CSS files
 - Auto-reload when changes are detected
+
+To preview different themes in development mode:
+```
+http://localhost:3000?theme=light  # For the new light theme
+http://localhost:3000?theme=dark   # For the dark theme
+```
 
 ## Customization
 
@@ -77,6 +88,12 @@ The CV uses Tailwind CSS for styling. Main style files:
    - Modern dark mode with careful color selection
    - Perfect for digital viewing and tech-focused roles
    - Automatically converts to light theme when printing
+
+3. Soft Light Theme (`--light`)
+   - Easy on the eyes with softer colors and reduced contrast
+   - Elegant typography with improved readability
+   - Subtle shadows and rounded corners for a modern feel
+   - Perfect for both digital viewing and printing
 
 ### Creating New Themes
 
@@ -104,6 +121,7 @@ program
 
 - `markdowncv build --default`: Generate PDF with default light theme
 - `markdowncv build --default-dark`: Generate PDF with dark theme
+- `markdowncv build --light`: Generate PDF with soft light theme
 - `markdowncv serve`: Start development server
 - `npm run dev`: Start development environment
 - `npm run build:css`: Build CSS only
