@@ -11,6 +11,7 @@ A modern, minimalist CV/resume generator that converts markdown to beautifully s
 - 💻 Live preview during development
 - 🎯 Responsive layout with proper A4 sizing
 - ⚡ Fast and lightweight
+- 🔄 Cross-platform compatibility (macOS, Windows, Linux, WSL)
 
 ## Installation
 
@@ -33,17 +34,17 @@ npm install -g .
 1. Edit `example.md` with your CV content
 2. Generate PDF with default light theme:
 ```bash
-markdowncv build --default
+markdowncv -build --default
 ```
 
 Or use the dark theme:
 ```bash
-markdowncv build --default-dark
+markdowncv -build --default-dark
 ```
 
 Generate with the new soft light theme (easier on the eyes):
 ```bash
-markdowncv build --light
+markdowncv -build --light
 ```
 
 The generated PDF will be saved as `[title]-[name]-resume.pdf` in the project root.
@@ -119,12 +120,57 @@ program
 
 ## Commands
 
-- `markdowncv build --default`: Generate PDF with default light theme
-- `markdowncv build --default-dark`: Generate PDF with dark theme
-- `markdowncv build --light`: Generate PDF with soft light theme
+- `markdowncv -build --default`: Generate PDF with default light theme
+- `markdowncv -build --default-dark`: Generate PDF with dark theme
+- `markdowncv -build --light`: Generate PDF with soft light theme
+- `markdowncv -build --html-only`: Generate HTML file only (useful for WSL environments)
 - `markdowncv serve`: Start development server
 - `npm run dev`: Start development environment
 - `npm run build:css`: Build CSS only
+
+## Cross-Platform Compatibility
+
+### Windows Subsystem for Linux (WSL)
+
+When running in WSL, you may encounter issues with Chrome/Puppeteer for PDF generation. Here's how to use the tool in WSL:
+
+#### Option 1: Using the WSL Wrapper Script
+
+The repository includes a `run-markdowncv.sh` script that helps with WSL compatibility:
+
+```bash
+# Make the script executable (first time only)
+chmod +x run-markdowncv.sh
+
+# Run the wrapper script with desired options
+./run-markdowncv.sh -build --default
+```
+
+#### Option 2: Install Chrome Dependencies
+
+To enable full PDF generation in WSL, install the necessary Chrome dependencies:
+
+For Ubuntu 22.04 and earlier:
+```bash
+sudo apt update && sudo apt install -y ca-certificates fonts-liberation libasound2 libatk-bridge2.0-0 libatk1.0-0 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 xdg-utils
+```
+
+For Ubuntu 24.04:
+```bash
+sudo apt update && sudo apt install -y ca-certificates fonts-liberation libasound2t64 libatk-bridge2.0-0t64 libatk1.0-0t64 libcairo2 libcups2t64 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libglib2.0-0t64 libgtk-3-0t64 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 xdg-utils
+```
+
+#### Option 3: HTML-Only Mode
+
+If you're having trouble with PDF generation in WSL, you can use the `--html-only` flag to generate an HTML file instead:
+
+```bash
+./run-markdowncv.sh -build --default --html-only
+# or
+markdowncv -build --default --html-only
+```
+
+This will create a `.html` file that you can open in a browser and print to PDF manually if needed.
 
 ## Technical Details
 

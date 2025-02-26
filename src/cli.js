@@ -60,17 +60,39 @@ async function ensureDirectoryExists(dir) {
     }
 }
 
+// Check for -build format and convert to build
+const args = process.argv.slice(2);
+for (let i = 0; i < args.length; i++) {
+    if (args[i] === '-build') {
+        args[i] = 'build';
+    }
+}
+process.argv = [...process.argv.slice(0, 2), ...args];
+
 program
     .name('markdowncv')
     .description('CLI to build and serve markdown CV')
     .version('1.0.0');
 
-program.command('build')
+program
+    .command('build')
+    .alias('-build')
     .description('Build CV as PDF')
     .option('--default', 'Use default style')
     .option('--default-dark', 'Use default dark style')
     .option('--light', 'Use light theme with softer colors')
+    .option('--html-only', 'Generate HTML file only, skip PDF generation')
     .action(async (options) => {
+        // Validate that a theme is specified
+        const themeOptions = ['default', 'defaultDark', 'light'];
+        const hasTheme = themeOptions.some(theme => options[theme]);
+        
+        if (!hasTheme) {
+            logger.error("No theme specified! You must include one of: --default, --default-dark, or --light");
+            console.log(chalk.yellow("\nExample: markdowncv -build --default"));
+            process.exit(1);
+        }
+        
         let server;
         let tempHtmlPath;
         let spinner = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
@@ -150,6 +172,7 @@ program.command('build')
             
             // Generate filename in root directory
             const filename = path.join(process.cwd(), `${title.toLowerCase()}-${name.toLowerCase().replace(' ', '-')}-resume.pdf`);
+            const htmlFilename = path.join(process.cwd(), `${title.toLowerCase()}-${name.toLowerCase().replace(' ', '-')}-resume.html`);
             
             // Generate HTML content
             logger.step(currentStep++, totalSteps, 'Generating HTML template');
@@ -160,6 +183,14 @@ program.command('build')
             tempHtmlPath = path.join(process.cwd(), 'temp-cv.html');
             await fs.writeFile(tempHtmlPath, html);
             stopSpinner(true, 'HTML template created');
+
+            // If html-only option is set, save the HTML file and exit
+            if (options.htmlOnly) {
+                await fs.writeFile(htmlFilename, html);
+                logger.success(`HTML file saved to ${htmlFilename}`);
+                logger.info('HTML-only mode: PDF generation skipped.');
+                return;
+            }
 
             // Start server for PDF generation
             logger.step(currentStep++, totalSteps, 'Setting up rendering environment');
@@ -202,12 +233,22 @@ program.command('build')
                             '--disable-dev-shm-usage',
                             '--disable-web-security'
                         ],
-                        executablePath: process.platform === 'darwin' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : undefined
+                        executablePath: process.platform === 'darwin' 
+                            ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' 
+                            : process.platform === 'win32'
+                                ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+                                : undefined
                     });
                     stopSpinner(true, 'Browser launched successfully');
                 } catch (browserError) {
                     stopSpinner(false);
                     logger.error('Failed to launch browser', 'BROWSER_LAUNCH_FAILED');
+                    if (browserError.message.includes('shared libraries') || 
+                        browserError.message.includes('libnss3.so')) {
+                        console.error(chalk.yellow('\nWSL detected. You may need to install Chrome dependencies:'));
+                        console.error(chalk.cyan('  sudo apt update && sudo apt install -y ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils'));
+                        console.error(chalk.cyan('\nAlternatively, try running with the --html-only option to generate an HTML file instead of a PDF.'));
+                    }
                     throw browserError;
                 }
 
@@ -574,6 +615,15 @@ function generateHTML(markdownContent, cssContent, options) {
                     color: #dbeafe; /* Blue-100 */
                     text-decoration: underline;
                 }
+
+                .dark-theme .cv-main p.text-base {
+                    color: #e2e8f0 !important; /* Slate-200: much brighter for better contrast */
+                }
+
+                .dark-theme .profile-text {
+                    color: #f1f5f9 !important; /* Slate-100: Very bright for maximum contrast in dark mode */
+                    opacity: 1;
+                }
             </style>
         </head>
         <body class="h-full">
@@ -652,7 +702,10 @@ function generateRightColumn(markdown) {
             const [title, ...content] = section.split('\n');
             let sectionContent = md.render(content.join('\n'));
             
-            if (title.trim() === 'Employment History') {
+            if (title.trim() === 'Profile') {
+                sectionContent = sectionContent
+                    .replace(/<p>/g, '<p class="profile-text text-base text-gray-600 leading-relaxed">');
+            } else if (title.trim() === 'Employment History') {
                 sectionContent = sectionContent
                     .replace(/<h3>/g, '<div class="job-entry"><div class="job-header"><h3 class="job-title">')
                     .replace(/<\/h3>/g, '</h3>')
@@ -676,9 +729,6 @@ function generateRightColumn(markdown) {
                         .replace(/<a /g, '<a class="reference-contact" ')
                         .replace(/<\/p>/g, '</div></div>')
                 }</div>`;
-            } else if (title.trim() === 'Profile') {
-                sectionContent = sectionContent
-                    .replace(/<p>/g, '<p class="text-base text-gray-600 leading-relaxed">');
             }
             
             return `
