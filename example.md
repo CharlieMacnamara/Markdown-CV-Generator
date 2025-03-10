@@ -1,60 +1,61 @@
-# Developer|John Doe
-
+# Charlie Macnamara
 ## Details
 
-**Phone**  
-[+1 (555) 123-4567](tel:+15551234567)
+**Based In**  
+Edinburgh, United Kingdom
+
+**Based**  
+[07756 915579](tel:+447756915579)
 
 **Email**  
-[john.doe@email.com](mailto:john.doe@email.com)
+[mail@charliemacnamara.uk](mailto:mail@charliemacnamara.uk  )
 
 ## Links
 
-[Portfolio](https://johndoe.dev)
+[Portfolio](https://www.charliemacnamara.uk/)
 
 ## Skills
 
-- Full-Stack Development
-- Cloud Architecture (AWS)
-- System Design & Architecture
-- API Development
-- CI/CD Pipelines & DevOps
-- Test Automation (Sometimes it even works)
+- Product Documentation
+- API Documentation
+- Content Strategy
+- Learning Materials
+- Developer Experience (doc-as-code)
+- Content Testing
+- Doc Workflows
 
 ## Profile
 
-I am a software engineer specializing in scalable systems. I build apps that just work. My approach fuses architectural thinking with practical solutions—all that generic stuff.
+Experienced documentation expert looking for my next innovative project. I create engaging, user-friendly documentation that makes technology accessible and helps achieve business goals with clear language.
 
 ## Employment History
 
-### Senior Software Engineer, Tech Corp
-Jan 2021 — Present
+### Freelance Technical Writer
+Oct 2023 — Present
 
-Managed not to break anything important.
+Delivering engaging content and documentation to various innovative products.
 
-Key achievements:
+### Technical Writer
+Aug 2022 - Sep 2023
 
-- Cut deployment time by 60%. Broke several things.
-- Mentored five junior developers to senior positions. They now make my coffee.
-- Created docs that cut onboarding time by 35%.
+tablished release documentation and ESG content. Collaborated closely with development and product teams to create API references, integration guides, product documentation, learning materials, and newsletters.
 
-### Software Engineer, InnovateTech
-Mar 2018 — Dec 2020
+### Technical Writer & Support Engineer
+Sep 2019 - Apr 2022 
 
-Developed RESTful APIs for the company's flagship. Enabled third-party integrations.
+• Redesigned documentation for technical support, improving workflow efficiency.
 
-Key achievements:
+• Created comprehensive workflow tutorials and SDK guides for user-friendly experience.
 
-- Boosted test coverage from 45% to 85%. The untested 15% keeps me up at night.
-- Built intuitive UIs for complex data. Users thanked me. This was suspicious.
-- Optimized database queries by 30%.
+• Mentored junior team members to enhance their technical writing skills.
 
 ## References
 
-### Dr. Sarah Chen
-Director of Engineering, CloudScale Solutions  
-[schen@cloudscale.tech](mailto:schen@cloudscale.tech) [+1 (555) 234-5678](tel:+15552345678)
+### Matt Matthias, EVORA Global
+CTO, EVORA
+Global  
+[schen@cloudscale.tech](mailto:Co-founder) 
 
-### Michael Rodriguez
-VP of Technology, InnovateX  
-[mrodriguez@innovatex.io](mailto:mrodriguez@innovatex.io) [+1 (555) 345-6789](tel:+15553456789)
+### Tim Koschuetzki, Transloadit
+Co-founder  
+[tim@transloadit.com](mailto:tim@transloadit.com)

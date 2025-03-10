@@ -1,0 +1,873 @@
+
+        <!DOCTYPE html>
+        <html lang="en" class="h-full bg-gray-50">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>CV - Technical Writer|Charlie Macnamara</title>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+            <style>/* CV Styles */
+:root {
+  --primary-color: #1a1a1a; /* Near black for primary elements */
+  --text-color: #333333; /* Dark gray for main text */
+  --light-bg: #f9fafb; /* Light gray for background */
+  --main-bg: #ffffff; /* White for main content area */
+  --sidebar-bg: #f3f4f6; /* Light gray for sidebar */
+  --border-color: #e5e7eb; /* Light gray for borders */
+  --section-color: #1a1a1a; /* Near black for section headings */
+  --highlight-color: #6366f1; /* Indigo-500 only for links and minimal accents */
+  --subtle-color: #4b5563; /* Gray-600: Subtle text */
+  --divider-color: #d1d5db; /* Gray-300: For dividers */
+  --card-bg: rgba(255, 255, 255, 0.8); /* Semi-transparent white for cards */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05); /* Small shadow */
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Medium shadow */
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Large shadow */
+  
+  /* Dynamic spacing variables */
+  --space-xs: 0.125rem;
+  --space-sm: 0.25rem;
+  --space-md: 0.5rem;
+  --space-lg: 0.75rem;
+  --space-xl: 1rem;
+
+  /* Content scale */
+  --content-scale: 1;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--text-color);
+  line-height: 1.25;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0;
+  background-color: var(--light-bg);
+  letter-spacing: -0.01em;
+}
+
+.cv-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  box-shadow: var(--shadow-lg);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  margin: 0;
+}
+
+.cv-container:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15), 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.cv-header {
+  padding: calc(var(--space-md) * var(--content-scale)) var(--space-xl);
+  background: linear-gradient(to right, #000000, #1a1a1a);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.cv-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(255,255,255,0.03), transparent);
+  transform: skewX(-20deg) translateX(20%);
+}
+
+.cv-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.025em;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.cv-grid {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.cv-sidebar {
+  flex: 0 0 27%; /* Narrower sidebar */
+  background-color: var(--sidebar-bg);
+  padding: calc(var(--space-md) * var(--content-scale)) var(--space-md);
+  border-right: 1px solid var(--border-color);
+  position: relative;
+  box-shadow: inset -2px 0 3px -1px rgba(0,0,0,0.04);
+}
+
+.cv-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--divider-color) 20%, var(--divider-color) 80%, transparent);
+}
+
+.cv-main {
+  flex: 1;
+  background-color: var(--main-bg);
+  padding: calc(var(--space-md) * var(--content-scale)) var(--space-md);
+}
+
+h1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  margin-top: 0;
+  color: var(--primary-color);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: calc(var(--space-lg) * 0.8);
+  margin-bottom: var(--space-sm);
+  color: var(--section-color);
+  letter-spacing: -0.015em;
+  position: relative;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--divider-color);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 2rem;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-xs);
+  color: var(--text-color);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  margin-top: var(--space-xs);
+  color: var(--text-color);
+  font-size: 0.75rem;
+}
+
+a {
+  color: var(--highlight-color);
+  text-decoration: none;
+  transition: all 0.15s ease-in-out;
+  padding: 0.125rem 0.25rem;
+  margin: -0.125rem -0.25rem;
+  border-radius: 0.25rem;
+  background-image: linear-gradient(to right, transparent 50%, rgba(99, 102, 241, 0.1) 50%);
+  background-size: 200% 100%;
+  background-position: 0 0;
+}
+
+a:hover {
+  color: #4f46e5; /* Slightly darker blue on hover */
+  text-decoration: none;
+  background-position: -100% 0;
+  box-shadow: 0 1px 2px rgba(79, 70, 229, 0.2);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--highlight-color);
+  outline-offset: 2px;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: var(--space-xs);
+  margin-bottom: var(--space-sm);
+  margin-top: var(--space-xs);
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: calc(var(--space-xs) * 0.8);
+  position: relative;
+  padding-left: var(--space-lg);
+  font-size: 0.75rem;
+}
+
+li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 0.25rem;
+  height: 0.25rem;
+  background-color: #000000;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Fix for form elements appearance property */
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  -webkit-appearance: button;
+  appearance: button;
+  background-color: transparent;
+  background-image: none;
+}
+
+/* Specific sections */
+.section {
+  margin-bottom: calc(var(--space-lg) * 0.8);
+  transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--divider-color);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
+  position: relative;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 1.5rem;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.section:hover .section-title::before {
+  width: 2.5rem;
+}
+
+.details, .links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+.details-item, .links-item {
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--card-bg);
+  border-radius: 0.25rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.details-item::before, .links-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 0;
+  background-color: var(--primary-color);
+  transition: height 0.2s ease;
+}
+
+.details-item:hover::before, .links-item:hover::before {
+  height: 100%;
+}
+
+.details-item:hover, .links-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.details-label {
+  font-weight: 600;
+  font-size: 0.65rem;
+  color: var(--primary-color);
+  margin-bottom: calc(var(--space-xs) * 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.details-value {
+  color: var(--text-color);
+  font-size: 0.75rem;
+}
+
+.link-item {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Employment History Refinements */
+.job-entry {
+  border-left: 2px solid #000000;
+  padding-left: var(--space-md);
+  position: relative;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  transition: border-left-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.02);
+}
+
+.job-entry:hover {
+  border-left-color: var(--highlight-color);
+  transform: translateX(2px);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.04);
+}
+
+.job-entry::before {
+  content: '';
+  position: absolute;
+  left: -0.3rem;
+  top: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  background-color: #000000;
+  border-radius: 50%;
+  border: 2px solid var(--main-bg);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.job-entry:hover::before {
+  background-color: var(--highlight-color);
+  transform: scale(1.2);
+}
+
+.job-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0;
+}
+
+.job-period {
+  font-size: 0.65rem;
+  color: var(--subtle-color);
+  margin-bottom: var(--space-xs);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.job-description {
+  color: var(--text-color);
+  margin-bottom: var(--space-xs);
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+.job-section-title {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: var(--space-xs);
+  margin-bottom: calc(var(--space-xs) * 0.5);
+}
+
+/* Skills section */
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+  margin-bottom: 0;
+}
+
+.skill-item {
+  background-color: var(--card-bg);
+  padding: calc(var(--space-xs) * 0.8) var(--space-sm);
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  min-height: 1.7rem;
+}
+
+.skill-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--highlight-color);
+  transition: width 0.2s ease;
+}
+
+.skill-item:hover {
+  border-color: #000000;
+  background-color: rgba(0, 0, 0, 0.02);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.skill-item:hover::after {
+  width: 100%;
+}
+
+/* Profile section */
+.profile-text {
+  color: var(--text-color);
+  font-size: 0.75rem;
+  line-height: 1.3;
+  max-width: 97%;
+  position: relative;
+  padding-left: var(--space-md);
+  margin-bottom: var(--space-xs);
+  text-shadow: 0 0.5px 0.5px rgba(255,255,255,0.8);
+}
+
+.profile-text::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary-color), transparent);
+  box-shadow: 1px 0 2px rgba(0,0,0,0.05);
+}
+
+/* Remove any vertical-align applied to block elements */
+.block-element {
+  display: block;
+}
+
+/* Properly handle ring styles using box-shadow instead of ring-color */
+.ring-style {
+  box-shadow: 0 0 0 1px var(--border-color);
+}
+
+/* References */
+.references-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+.reference-card {
+  background-color: var(--card-bg);
+  border-radius: 0.25rem;
+  padding: var(--space-sm);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reference-card::before {
+  content: '';
+  position: absolute;
+  right: -1.5rem;
+  top: -1.5rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.reference-card:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.reference-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.reference-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: calc(var(--space-xs) * 0.5);
+  color: var(--text-color);
+}
+
+.reference-position {
+  color: var(--subtle-color);
+  margin-bottom: var(--space-xs);
+  font-size: 0.65rem;
+}
+
+.reference-contact {
+  color: var(--highlight-color);
+  font-size: 0.65rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Achievements list */
+.achievements-list {
+  margin-bottom: var(--space-xs);
+  margin-top: var(--space-xs);
+  padding-left: 0;
+}
+
+.achievement-item {
+  margin-bottom: calc(var(--space-xs) * 0.8);
+  font-size: 0.7rem;
+  line-height: 1.25;
+  transition: transform 0.2s ease;
+}
+
+.achievement-item:hover {
+  transform: translateX(2px);
+}
+
+/* Focus styles following Tailwind UI best practices */
+.focus-visible:focus {
+  outline: 2px solid var(--highlight-color);
+  outline-offset: 2px;
+}
+
+/* Print optimization */
+@media print {
+  :root {
+    --content-scale: 0.85; /* Slightly reduce spacing for print */
+  }
+  
+  body {
+    padding: 0;
+    font-size: 8.5pt;
+    line-height: 1.2;
+    background-color: #ffffff;
+  }
+  
+  .cv-container {
+    box-shadow: none;
+  }
+  
+  .cv-sidebar, .cv-main {
+    padding: calc(var(--space-sm) * var(--content-scale));
+  }
+  
+  .cv-header {
+    padding: calc(var(--space-sm) * var(--content-scale)) var(--space-md);
+    background: #1a1a1a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    box-shadow: none;
+  }
+  
+  .cv-header::after {
+    display: none;
+  }
+  
+  .cv-title {
+    font-size: 13pt;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    text-shadow: none;
+  }
+  
+  h1 {
+    font-size: 13pt;
+    margin-bottom: var(--space-xs);
+    text-shadow: none;
+  }
+  
+  h2 {
+    font-size: 11pt;
+    margin-top: calc(var(--space-md) * var(--content-scale));
+    margin-bottom: var(--space-xs);
+    text-shadow: none;
+  }
+  
+  h2::after {
+    display: none;
+  }
+  
+  h3 {
+    font-size: 9.5pt;
+    margin-top: var(--space-xs);
+    margin-bottom: 0;
+  }
+  
+  p, li {
+    font-size: 8.5pt;
+    line-height: 1.2;
+    margin-bottom: calc(var(--space-xs) * var(--content-scale));
+  }
+  
+  /* Compact spacing for print */
+  ul {
+    margin-bottom: var(--space-xs);
+    margin-top: 0;
+  }
+  
+  li {
+    margin-bottom: calc(var(--space-xs) * 0.5);
+  }
+  
+  li::before {
+    top: 0.4em;
+    width: 0.2rem;
+    height: 0.2rem;
+    box-shadow: none;
+  }
+  
+  section {
+    margin-bottom: var(--space-sm);
+  }
+  
+  .section:hover, .job-entry:hover, .skill-item:hover, .achievement-item:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .section-title::before, .skill-item::after, .profile-text::before, .details-item::before, .links-item::before {
+    display: none;
+  }
+  
+  .job-entry {
+    margin-bottom: var(--space-sm);
+    padding-left: var(--space-sm);
+    padding-bottom: 0;
+    border-left-color: #000000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    box-shadow: none;
+  }
+  
+  .job-entry::before {
+    width: 0.25rem;
+    height: 0.25rem;
+    background-color: #000000 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    box-shadow: none;
+  }
+  
+  .reference-card {
+    padding: var(--space-xs);
+    margin-bottom: 0;
+    box-shadow: none;
+  }
+  
+  .reference-card::before {
+    display: none;
+  }
+  
+  .skills-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @page {
+    margin: 0.35cm;
+  }
+  
+  /* Hide shadows and fancy effects for print */
+  .details-item, .links-item, .reference-card, .skill-item {
+    box-shadow: none !important;
+    transform: none !important;
+    background-color: transparent;
+  }
+  
+  /* Ensure two-tone design is maintained in print */
+  .cv-sidebar {
+    background-color: var(--sidebar-bg) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    box-shadow: none;
+  }
+  
+  .cv-sidebar::before {
+    display: none;
+  }
+  
+  .cv-main {
+    background-color: var(--main-bg) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  a {
+    color: var(--highlight-color) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background-image: none;
+    box-shadow: none;
+  }
+  
+  .profile-text {
+    text-shadow: none;
+  }
+  
+  .job-description, .reference-position, .reference-contact, .details-value {
+    margin-bottom: 0;
+  }
+} </style>
+            <style>
+                .cv-title, h1 {
+                    font-family: 'Playfair Display', serif;
+                    letter-spacing: -0.02em;
+                }
+                
+                .cv-title {
+                    font-style: italic;
+                }
+                
+                @media print {
+                    .cv-title, h1 {
+                        font-family: 'Playfair Display', serif !important;
+                        -webkit-print-color-adjust: exact;
+                        print-color-adjust: exact;
+                    }
+                }
+            </style>
+        </head>
+        <body class="h-full">
+            <div class="min-h-full py-4 px-3 sm:p-5">
+                <div class="cv-container ">
+                    <header class="cv-header">
+                        <h1 class="cv-title">
+                            Technical Writer|Charlie Macnamara
+                        </h1>
+                    </header>
+                    
+                    <div class="cv-grid">
+                        <aside class="cv-sidebar">
+                            
+                <section class="section section-details">
+                    <h2 class="section-title">Details</h2>
+                    <div class="details-item ring-style"><div class="details-label">Location</strong><br>
+Edinburgh, Scotland</div></div>
+<div class="details-item ring-style"><div class="details-label">Email</strong><br>
+<a href="mailto:charlie@example.com">mail@charliemacnamara.uk</a></div></div>
+
+                </section>
+            
+                <section class="section section-links">
+                    <h2 class="section-title">Links</h2>
+                    <div class="links-item ring-style"><a class="link-item focus-visible" href="https://charliemacnamara.uk">Portfolio</a></div>
+
+                </section>
+            
+                <section class="section section-skills">
+                    <h2 class="section-title">Skills</h2>
+                    <ul class="skills-list">
+<li class="skill-item">Technical Documentation</li>
+<li class="skill-item">API Documentation</li>
+<li class="skill-item">Content Strategy</li>
+<li class="skill-item">Knowledge Base</li>
+<li class="skill-item">Style Guides</li>
+<li class="skill-item">Information Architecture</li>
+<li class="skill-item">UX Writing</li>
+<li class="skill-item">Doc Workflows</li>
+</ul>
+
+                </section>
+            
+                        </aside>
+
+                        <main class="cv-main">
+                            
+                <section class="section section-profile">
+                    <h2 class="section-title">Profile</h2>
+                    <p class="profile-text block-element">I connect complex technology with its users: crafting documentation that meets user needs and business goals. Whether establishing documentation standards from scratch or revitalizing existing content, I deliver clear and accessible documentation that empowers users and supports product adoption.</p>
+
+                </section>
+            
+                <section class="section section-employment-history">
+                    <h2 class="section-title">Employment History</h2>
+                    <div class="job-entry ring-style"><h3 class="job-title">Freelance Technical Writer</h3>
+<div class="job-period block-element">Apr 2020 — Present</div><p class="job-description block-element">Delivering documentation solutions to innovative teams, meeting deadlines and quality standards.</p>
+<div class="job-entry ring-style"><h3 class="job-title">Technical Writer, EVORA Global</h3>
+<p class="job-description block-element">Aug 2022 — Sep 2023</p>
+<p class="job-description block-element">Sole Technical Writer in ESG. Established documentation standards and produced technical material for development teams and users. Wrote API references, integration guides, product documentation, and newsletters.</p>
+<div class="job-entry ring-style"><h3 class="job-title">Technical Writer &amp; Support Engineer, Transloadit</h3>
+<p class="job-description block-element">Sep 2019 — Apr 2022</p>
+<p class="job-description block-element">Dual role translating user needs into effective documentation.</p>
+<p class="job-description block-element">Key Responsibilities:</p>
+<ul class="achievements-list">
+<li class="achievement-item">Redesigned docs, reducing support tickets</li>
+<li class="achievement-item">Created workflow tutorials, blogs, demos, and SDK guides</li>
+<li class="achievement-item">Developed internal knowledge base</li>
+<li class="achievement-item">Mentored junior team members</li>
+</ul>
+
+                </section>
+            
+                <section class="section section-references">
+                    <h2 class="section-title">References</h2>
+                    <div class="references-grid"><div class="reference-card ring-style">
+<h3 class="reference-name">Matt Matthias</h3>
+<div class="reference-position block-element">Technical Director, EVORA Global</div>
+<div class="reference-contact-group"><a class="reference-contact focus-visible" href="mailto:mmatthias@evoraglobal.com">mmatthias@evoraglobal.com</a></div></div>
+<div class="reference-card ring-style">
+<h3 class="reference-name">Tim Koschuetzki</h3>
+<div class="reference-position block-element">Co-founder, Transloadit</div>
+<div class="reference-contact-group"><a class="reference-contact focus-visible" href="mailto:tim@transloadit.com">tim@transloadit.com</a></div></div>
+</div>
+                </section>
+            
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+    
