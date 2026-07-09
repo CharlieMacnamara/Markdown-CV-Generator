@@ -1,6 +1,6 @@
 # Markdown CV Generator
 
-Write your CV in Markdown, run one command, get a polished PDF. Uses Puppeteer with Firefox for pixel-perfect A4 output.
+Write your CV in Markdown, run one command, get a polished PDF. Uses Puppeteer with Firefox for pixel-perfect A4 output with adaptive layout.
 
 ## Quick Start
 
@@ -10,6 +10,7 @@ cd Markdown-CV-Generator
 npm install
 PUPPETEER_BROWSER=firefox npx puppeteer browsers install firefox
 npm run build:css
+cp input.example.md input.md   # Create your personal CV
 ./src/cli.js build --default
 ```
 
@@ -17,13 +18,14 @@ Requires Node 22. The browser is downloaded once into `~/.cache/puppeteer`.
 
 ## Usage
 
-Edit `example.md` with your CV content, then:
+Copy `input.example.md` to `input.md` and edit with your CV content. The CLI reads `input.md` by default, falling back to `example.md`.
 
 ```bash
-markdowncv build --default       # Light theme
-markdowncv build --default-dark  # Dark theme
-markdowncv build --light         # Soft light theme
+markdowncv build --default              # Light theme
+markdowncv build --default-dark         # Dark theme
+markdowncv build --light                # Soft light theme
 markdowncv build --default --html-only  # HTML only, no PDF
+markdowncv build --default --input my-cv.md  # Custom input file
 ```
 
 The output saves as `[role]-[name]-resume.pdf` (or `[name]-resume.pdf`).
@@ -39,19 +41,20 @@ npm test             # Run integration tests
 ## Project Structure
 
 ```
+├── input.md              # Your CV (gitignored — personal data stays local)
+├── input.example.md      # Distributable template example
+├── example.md            # Legacy example (also works as fallback)
 ├── src/
-│   ├── cli.js          # CLI entry point (commander)
-│   ├── template.js     # HTML generation from markdown
-│   ├── parser.js       # Markdown section parser
-│   ├── renderer.js     # Sidebar/main content renderer
+│   ├── cli.js            # CLI entry point (commander) — reads input.md first
+│   ├── template.js       # HTML generation from markdown
+│   ├── parser.js         # Markdown section parser (sidebar vs main routing)
+│   ├── renderer.js       # Section renderers with semantic HTML
 │   └── styles/
-│       ├── input.css   # Tailwind entry point
-│       └── themes/     # Theme definitions
+│       └── input.css     # Tailwind v4 + CV layout (A4-fill, adaptive)
 ├── tests/
-│   └── integration/    # Puppeteer PDF generation tests
-├── puppeteer.config.js # Firefox download & cache config
-├── .node-version       # Node 22
-└── example.md          # Starter CV
+│   └── integration/      # Puppeteer PDF generation tests
+├── puppeteer.config.js   # Firefox download & cache config
+└── .node-version         # Node 22
 ```
 
 ## Technical Details
@@ -63,6 +66,8 @@ npm test             # Run integration tests
 | Styling | Tailwind CSS v4 |
 | CLI | commander |
 | Tests | Jest + Puppeteer + pdf-lib |
+
+The layout adapts to content length — the grid fills the full A4 page (297mm), with sidebar and main columns stretching via flex. Skills and job entries distribute evenly to avoid white space.
 
 ## License
 
