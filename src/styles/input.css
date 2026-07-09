@@ -103,16 +103,18 @@ p {
   max-width: 64rem;
   margin: 0 auto;
   width: 210mm;
-  min-height: 297mm;
+  height: 297mm;
   background: var(--bg-card);
   box-shadow: var(--shadow-sm);
   transition: all 0.2s ease-in-out;
+  overflow: hidden;
 }
 
 .cv-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  min-height: 100%;
+  grid-template-rows: auto 1fr;
+  height: 100%;
   border-left: 1px solid var(--border-color);
   position: relative;
 }
@@ -130,30 +132,63 @@ p {
 
 .cv-sidebar {
   grid-column: span 4;
-  padding: 1.5rem;
+  grid-row: 2;
+  padding: 1.75rem;
   background: var(--bg-sidebar);
   position: relative;
   box-shadow: inset -1px 0 0 rgba(0,0,0,0.02);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cv-sidebar > .section:last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-sidebar > .section:last-child > div:last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .cv-main {
   grid-column: span 8;
-  padding: 1.5rem;
+  grid-row: 2;
+  padding: 1.75rem;
   background: var(--bg-card);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cv-main > .section:last-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.job-entries {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 0.5rem;
 }
 
 .cv-header {
   grid-column: span 12;
-  padding: 1.5rem 1.5rem 1rem;
+  grid-row: 1;
+  padding: 1.5rem 1.75rem 1rem;
   border-bottom: 1px solid var(--border-color);
-  margin-bottom: 0.5rem;
   background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
   z-index: 10;
 }
@@ -238,11 +273,6 @@ p {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.job-entry:last-child {
-  margin-bottom: 0;
 }
 
 .job-header {

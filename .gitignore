@@ -27,6 +27,9 @@ dist/
 temp-*.html
 test-output.pdf
 
+# Real CV input (gitignored — contains personal info)
+input.md
+
 # Puppeteer browser downloads
 chrome/
 

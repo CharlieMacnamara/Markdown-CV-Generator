@@ -3,6 +3,7 @@
 const { program } = require('commander');
 const puppeteer = require('puppeteer');
 const fs = require('fs').promises;
+const fsSync = require('fs');
 const path = require('path');
 const http = require('http');
 const picocolors = require('picocolors');
@@ -11,11 +12,17 @@ const { generateHTML } = require('./template');
 const pc = picocolors;
 
 const ERROR_HELP = {
-  MARKDOWN_NOT_FOUND: { message: 'Could not find example.md', suggestion: 'Run from the project root directory' },
+  MARKDOWN_NOT_FOUND: { message: 'Could not find input markdown file', suggestion: 'Create input.md or specify --input' },
   CSS_BUILD_FAILED: { message: 'Failed to build CSS', suggestion: 'Run "npm install" and try again' },
   BROWSER_LAUNCH_FAILED: { message: 'Failed to launch browser', suggestion: 'Ensure Chrome is installed' },
   PDF_GENERATION_FAILED: { message: 'Failed to generate PDF', suggestion: 'Check disk space and permissions' },
 };
+
+function resolveInputPath(inputOption) {
+  if (inputOption) return inputOption;
+  if (fsSync.existsSync('input.md')) return 'input.md';
+  return 'example.md';
+}
 
 const log = {
   info: (msg) => console.log(pc.blue(msg)),
@@ -54,6 +61,7 @@ program
   .option('--default-dark', 'Dark theme')
   .option('--light', 'Light theme')
   .option('--html-only', 'HTML only, skip PDF')
+  .option('--input <path>', 'Input markdown file (default: input.md, fallback example.md)')
   .action(async (options) => {
     const activeTheme = ['default', 'defaultDark', 'light'].find(k => options[k]);
     if (!activeTheme) {
@@ -73,8 +81,10 @@ program
       log.success('CSS built');
 
       log.step(2, 5, 'Reading content');
+      const inputPath = resolveInputPath(options.input);
+      log.info(`   Source: ${inputPath}`);
       const [markdownContent, cssContent] = await Promise.all([
-        fs.readFile('example.md', 'utf-8'),
+        fs.readFile(inputPath, 'utf-8'),
         fs.readFile(path.join(__dirname, '../dist/output.css'), 'utf-8'),
       ]);
       log.success('Content loaded');

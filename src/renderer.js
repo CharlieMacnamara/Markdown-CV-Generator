@@ -29,25 +29,28 @@ const sectionRenderers = {
   },
 
   'Employment History'(html) {
-    return html
-      .replace(/<h3>/g, '<div class="job-entry"><div class="job-header"><h3 class="job-title">')
-      .replace(/<\/h3>/g, '</h3>')
-      .replace(
-        /<p>((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}\s*[—–-]\s*(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{4}|Present|Current))<\/p>/g,
-        '<div class="job-period">$1</div></div>'
-      )
-      .replace(/<p>Notable clients:<\/p>/g, '<h4 class="job-section-title">Notable clients:</h4>')
-      .replace(
-        /<p>((?!Notable clients:|Key achievements:|Achievements:).+?)<\/p>/g,
-        '<p class="job-description">$1</p>'
-      )
-      .replace(
-        /<p>(Key achievements:|Achievements:)<\/p>/g,
-        '<h4 class="job-section-title">$1</h4>'
-      )
-      .replace(/<ul>/g, '<ul class="achievements-list">')
-      .replace(/<li>/g, '<li class="achievement-item">')
-      .replace(/<\/div>\s*(?!<div class="job-entry">|$)/g, '</div>');
+    const periodRe = /^(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+)?\d{4}\s*[—–-]\s*(?:(?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+)?\d{4}|Present|Current)$/;
+
+    const entries = html.replace(
+      /<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>((?:\s*<p>[\s\S]*?<\/p>)*)/g,
+      (_, title, firstP, restP) => {
+        const isPeriod = periodRe.test(firstP);
+        const headerContent = isPeriod
+          ? `<h3 class="job-title">${title}</h3><div class="job-period">${firstP}</div>`
+          : `<h3 class="job-title">${title}</h3><p class="job-description">${firstP}</p>`;
+
+        const restHtml = restP
+          .replace(/<p>Notable clients:<\/p>/g, '<h4 class="job-section-title">Notable clients:</h4>')
+          .replace(/<p>(Key achievements:|Achievements:)<\/p>/g, '<h4 class="job-section-title">$1</h4>')
+          .replace(/<p>/g, '<p class="job-description">')
+          .replace(/<ul>/g, '<ul class="achievements-list">')
+          .replace(/<li>/g, '<li class="achievement-item">');
+
+        return `<div class="job-entry"><div class="job-header">${headerContent}</div>${restHtml}</div>`;
+      }
+    );
+
+    return `<div class="job-entries">${entries}</div>`;
   },
 
   References(html) {
