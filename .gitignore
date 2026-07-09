@@ -21,8 +21,13 @@ dist/
 
 # Generated PDFs
 *-resume.pdf
+*-resume.html
 
 # Temporary files
 temp-*.html
+test-output.pdf
+
+# Puppeteer browser downloads
+chrome/
 
 !dist/.gitkeep 

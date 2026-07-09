@@ -1,61 +1,67 @@
-# Charlie Macnamara
+# Developer|John Doe
+
 ## Details
 
-**Based In**  
-Edinburgh, United Kingdom
+**Phone**
+[+1 (555) 123-4567](tel:+15551234567)
 
-**Based**  
-[07756 915579](tel:+447756915579)
-
-**Email**  
-[mail@charliemacnamara.uk](mailto:mail@charliemacnamara.uk  )
+**Email**
+[john.doe@email.com](mailto:john.doe@email.com)
 
 ## Links
 
-[Portfolio](https://www.charliemacnamara.uk/)
+[Portfolio](https://johndoe.dev)
 
 ## Skills
 
-- Product Documentation
-- API Documentation
-- Content Strategy
-- Learning Materials
-- Developer Experience (doc-as-code)
-- Content Testing
-- Doc Workflows
+- Full-Stack Development
+- Cloud Architecture (AWS)
+- System Design
+- API Development
+- CI/CD & DevOps
+- Test Automation
 
 ## Profile
 
-Experienced documentation expert looking for my next innovative project. I create engaging, user-friendly documentation that makes technology accessible and helps achieve business goals with clear language.
+Senior software engineer with expertise in scalable systems and cloud architecture. Proven track record of delivering high-performance applications and mentoring development teams.
 
 ## Employment History
 
-### Freelance Technical Writer
-Oct 2023 — Present
+### Senior Software Engineer, Tech Corp
+Jan 2021 — Present
 
-Delivering engaging content and documentation to various innovative products.
+Led development of cloud-native applications and microservices architecture, improving system scalability by 40%.
 
-### Technical Writer
-Aug 2022 - Sep 2023
+Key achievements:
 
-tablished release documentation and ESG content. Collaborated closely with development and product teams to create API references, integration guides, product documentation, learning materials, and newsletters.
+- Architected distributed systems serving 1M+ daily users
+- Reduced deployment time by 60% through CI/CD optimization
+- Mentored 5 junior developers to senior positions
 
-### Technical Writer & Support Engineer
-Sep 2019 - Apr 2022 
+### Software Developer, StartUp Inc
+Jun 2018 — Dec 2020
 
-• Redesigned documentation for technical support, improving workflow efficiency.
+Developed full-stack applications and established core infrastructure.
 
-• Created comprehensive workflow tutorials and SDK guides for user-friendly experience.
+Achievements:
 
-• Mentored junior team members to enhance their technical writing skills.
+- Built real-time analytics platform processing 500K events/day
+- Reduced API response times by 70%
+- Implemented automated testing with 90% coverage
 
 ## References
 
-### Matt Matthias, EVORA Global
-CTO, EVORA
-Global  
-[schen@cloudscale.tech](mailto:Co-founder) 
+### Dr. Sarah Chen
+Director of Engineering, CloudScale Solutions
+[schen@cloudscale.tech](mailto:schen@cloudscale.tech) | [+1 (555) 234-5678](tel:+15552345678)
 
-### Tim Koschuetzki, Transloadit
-Co-founder  
-[tim@transloadit.com](mailto:tim@transloadit.com)
+### Michael Rodriguez
+VP of Technology, InnovateX
+[mrodriguez@innovatex.io](mailto:mrodriguez@innovatex.io) | [+1 (555) 345-6789](tel:+15553456789)
+
+## Education
+
+### Bachelor of Science in Computer Science
+
+University of Technology
+2014 — 2018

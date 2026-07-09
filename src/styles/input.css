@@ -1,620 +1,465 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-    :root {
-        /* Base theme variables - system defaults */
-        --bg-primary: #ffffff;
-        --bg-secondary: #f9fafb;
-        --bg-sidebar: #f1f5f9;
-        --bg-card: #ffffff;
-        --text-primary: #111827;  /* Darker for better contrast */
-        --text-secondary: #374151; /* Improved contrast */
-        --text-muted: #6b7280;
-        --primary-color: #2563eb;
-        --primary-hover: #1d4ed8;
-        --accent-color: #3b82f6;
-        --border-color: #e5e7eb;
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-        --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    }
-
-    /* Refined Typography System - Using serif for headings and modern sans for body */
-    body {
-        font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
-                     'Open Sans', 'Helvetica Neue', sans-serif;
-        @apply text-[var(--text-primary)] antialiased;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-    }
-    
-    /* Heading typography - Using Playfair Display for a more interesting look */
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-        @apply font-semibold tracking-tight;
-        letter-spacing: -0.02em;
-        line-height: 1.2;
-    }
-
-    /* Accent typographic elements - specific styling for certain elements */
-    .section-title {
-        font-family: 'Nunito Sans', sans-serif;
-        @apply uppercase tracking-wide text-sm font-bold;
-        letter-spacing: 0.06em;
-        color: var(--text-secondary);
-    }
-
-    .job-title {
-        font-family: 'Playfair Display', serif;
-        font-weight: 600;
-        color: var(--text-primary);
-    }
-
-    /* For detail labels like "Email:", "Phone:", etc. */
-    .details-label {
-        font-family: 'Nunito Sans', sans-serif;
-        font-weight: 700;
-        color: var(--text-secondary);
-    }
-
-    @font-face {
-        font-family: 'Trebuchet MS';
-        src: local('Trebuchet MS');
-    }
-
-    body {
-        @apply antialiased text-gray-900 bg-gray-50;
-    }
-
-    h1 {
-        @apply text-2xl font-bold tracking-tight text-gray-900;
-    }
-
-    h2 {
-        @apply text-sm font-semibold tracking-wide text-gray-900 uppercase;
-    }
-
-    h3 {
-        @apply text-base font-semibold text-gray-900;
-    }
-
-    hr {
-        @apply my-4 border-gray-200/60;
-    }
-
-    a {
-        @apply text-blue-600 no-underline hover:text-blue-800 transition-colors duration-150;
-    }
-    
-    ul {
-        @apply m-0 p-0 list-none;
-    }
-    
-    p {
-        @apply m-0 leading-normal;
-    }
-
-    /* Light theme base styles with improved contrast */
-    .theme--light {
-        --primary-color: #4f46e5;  /* Indigo-600 */
-        --primary-hover: #4338ca;  /* Indigo-700 */
-        --bg-main: #f8fafc;
-        --bg-card: #ffffff;
-        --bg-sidebar: #f1f5f9;
-        --text-primary: #1e293b;  /* Slate-800 - better contrast */
-        --text-secondary: #334155; /* Slate-700 */
-        --text-muted: #64748b;    /* Slate-500 */
-        --border-color: #e2e8f0;   /* Slate-200 */
-        --accent-color: #818cf8;   /* Indigo-400 */
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    }
-
-    /* Dark theme styles - Improved contrast */
-    .dark-theme {
-        --primary-color: #93c5fd;  /* Blue-300 - softer blue that pops on dark */
-        --primary-hover: #60a5fa;  /* Blue-400 - for hover states */
-        --bg-main: #111827;        /* Gray-900 - main background */
-        --bg-card: #1f2937;        /* Gray-800 - card background */
-        --bg-sidebar: #1e293b;     /* Slate-800 - better with blue accents */
-        --text-primary: #f8fafc;   /* Slate-50 - brighter for better contrast */
-        --text-secondary: #e2e8f0; /* Slate-200 - enhanced contrast for readability */
-        --text-muted: #94a3b8;     /* Slate-400 - still readable but muted */
-        --border-color: #334155;   /* Slate-700 - subtle but visible borders */
-        --accent-color: #60a5fa;   /* Blue-400 - accent color for bullets and highlights */
-        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
-        --bg-sidebar-rgb: 30, 41, 59; /* Slate-800 for rgba calculations */
-    }
+@theme {
+  --font-sans: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --color-page: 20mm;
 }
 
-@layer components {
-    /* Page setup for A4 */
-    @page {
-        size: A4;
-        margin: 0;
-    }
-
-    /* Main container */
-    .cv-container {
-        @apply max-w-5xl mx-auto bg-[var(--bg-card)];
-        width: 210mm;
-        min-height: 297mm;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-        transition: all 0.2s ease-in-out;
-    }
-
-    /* Layout */
-    .cv-grid {
-        @apply grid grid-cols-12 min-h-full;
-        border-left: 1px solid var(--border-color);
-        position: relative;
-    }
-
-    /* Refined separator between sidebar and main content */
-    .cv-grid::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 33.333%;
-        width: 1px;
-        background: linear-gradient(to bottom, 
-            rgba(0,0,0,0.01), 
-            rgba(0,0,0,0.05) 15%, 
-            rgba(0,0,0,0.05) 85%, 
-            rgba(0,0,0,0.01));
-        z-index: 2;
-    }
-
-    .cv-sidebar {
-        @apply col-span-4 p-6 space-y-5;
-        background-color: var(--bg-sidebar);
-        position: relative;
-        box-shadow: inset -1px 0 0 rgba(0,0,0,0.02);
-    }
-
-    .cv-main {
-        @apply col-span-8 p-6 space-y-5;
-        background-color: var(--bg-card);
-        position: relative;
-        background-image: linear-gradient(to bottom right, 
-            rgba(255, 255, 255, 0.01), 
-            rgba(0, 0, 0, 0.01));
-    }
-
-    /* Header - Modern, Minimal Design */
-    .cv-header {
-        @apply col-span-12 px-6 py-6 border-b relative;
-        background-color: var(--bg-card);
-        border-color: var(--border-color);
-        border-bottom-width: 1px;
-        margin-bottom: 0.5rem;
-        background-image: linear-gradient(180deg, 
-            rgba(255,255,255,0.5) 0%, 
-            rgba(255,255,255,0) 100%);
-        z-index: 10;
-    }
-    
-    .cv-header h1 {
-        @apply text-center font-bold;
-        color: var(--text-primary);
-        letter-spacing: -0.035em;
-        font-size: 2.25rem;
-        line-height: 1.1;
-        max-width: 90%;
-        margin: 0 auto;
-        padding: 0.75rem 1.5rem;
-        position: relative;
-        transition: transform 0.2s ease;
-    }
-
-    /* Sections */
-    .section {
-        @apply relative space-y-3;
-    }
-
-    .section-title {
-        @apply text-sm font-semibold uppercase tracking-wider pb-2 mb-3 border-b;
-        color: var(--primary-color);
-        border-color: var(--border-color);
-        letter-spacing: 0.05em;
-    }
-
-    /* Details */
-    .details-list {
-        @apply space-y-3;
-    }
-
-    .details-item {
-        @apply rounded-lg p-3 ring-1 transition-all duration-200;
-        background-color: var(--bg-card);
-        ring-color: var(--border-color);
-    }
-
-    .details-label {
-        @apply text-sm font-medium mb-1;
-        color: var(--text-primary);
-    }
-
-    .details-value {
-        @apply text-sm;
-        color: var(--text-secondary);
-    }
-
-    /* Skills */
-    .skills-grid {
-        @apply flex flex-col gap-2;
-    }
-
-    .skill-item {
-        @apply text-sm pl-4 relative leading-relaxed;
-        display: block;
-        width: 100%;
-        color: var(--text-secondary);
-        transition: all 0.15s ease-in-out;
-    }
-
-    .skill-item::before {
-        content: '•';
-        @apply absolute left-0;
-        color: var(--accent-color);
-    }
-    
-    .skill-item:hover {
-        transform: translateX(2px);
-    }
-
-    /* Employment */
-    .job-entry {
-        @apply space-y-3 mb-6 last:mb-0;
-    }
-
-    .job-header {
-        @apply space-y-1;
-    }
-
-    .job-title {
-        @apply text-base font-medium;
-        color: var(--text-primary);
-        letter-spacing: -0.01em;
-    }
-
-    .job-period {
-        @apply text-sm;
-        color: var(--text-muted);
-    }
-
-    .job-description {
-        @apply text-sm leading-relaxed;
-        color: var(--text-secondary);
-    }
-
-    .achievements-list {
-        @apply mt-2 space-y-1.5;
-    }
-
-    .achievement-item {
-        @apply relative pl-4 text-sm leading-relaxed;
-        color: var(--text-secondary);
-    }
-
-    .achievement-item::before {
-        content: '→';
-        @apply absolute left-0;
-        color: var(--accent-color);
-    }
-
-    /* Job Section Headers */
-    .job-section-title {
-        @apply text-sm font-medium mt-3 mb-2;
-        color: var(--text-primary);
-    }
-
-    /* References */
-    .reference-section {
-        @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
-    }
-
-    .reference-card {
-        @apply p-4 rounded-lg ring-1 flex flex-col space-y-2 transition-all duration-200;
-        background-color: rgba(var(--bg-sidebar-rgb, 241, 245, 249), 0.5);
-        ring-color: var(--border-color);
-        box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-    }
-    
-    .reference-card:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
-    }
-
-    .reference-name {
-        @apply text-sm font-medium;
-        color: var(--text-primary);
-    }
-
-    .reference-content {
-        @apply flex flex-col space-y-1;
-    }
-
-    .reference-position {
-        @apply text-sm;
-        color: var(--text-secondary);
-    }
-
-    .reference-contact {
-        @apply text-sm transition-colors duration-200;
-        color: var(--primary-color);
-    }
-    
-    .reference-contact:hover {
-        color: var(--primary-hover);
-    }
-
-    /* Links */
-    a {
-        @apply no-underline transition-colors duration-200;
-        color: var(--primary-color);
-    }
-    
-    a:hover {
-        color: var(--primary-hover);
-    }
-
-    .portfolio-link {
-        @apply inline-flex items-center;
-    }
-
-    .portfolio-link::after {
-        content: '↗';
-        @apply ml-0.5 text-xs opacity-75;
-    }
-
-    /* Print Optimizations */
-    @media print {
-        .cv-container {
-            @apply shadow-none;
-            margin: 0;
-            width: 210mm;
-            height: 297mm;
-        }
-
-        .cv-sidebar {
-            @apply print:bg-[var(--bg-sidebar)];
-            background-color: rgba(var(--bg-sidebar-rgb, 241, 245, 249), 0.9) !important;
-        }
-
-        hr {
-            @apply print:border-[var(--border-color)];
-            opacity: 0.4;
-        }
-        
-        /* Ensure all transitions are disabled for print */
-        * {
-            transition: none !important;
-        }
-        
-        /* Remove all shadows for print */
-        .cv-container, .reference-card, .details-item {
-            box-shadow: none !important;
-        }
-    }
-
-    /* Dark theme specific adjustments */
-    .dark-theme .cv-container {
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-    }
-
-    .dark-theme .section-title {
-        color: var(--primary-color);
-        border-color: var(--border-color);
-        opacity: 0.95;
-    }
-
-    .dark-theme .cv-header {
-        background: linear-gradient(180deg, 
-            rgba(31,41,55,0.95) 0%, 
-            rgba(17,24,39,0.6) 100%);
-        border-bottom: 1px solid rgba(51, 65, 85, 0.6);
-    }
-    
-    /* Modern title styling for dark theme */
-    .dark-theme .cv-header h1 {
-        color: #f1f5f9; /* Slate-100 */
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Dark theme separator */
-    .dark-theme .cv-grid::after {
-        background: linear-gradient(to bottom, 
-            rgba(255,255,255,0.01), 
-            rgba(255,255,255,0.06) 15%, 
-            rgba(255,255,255,0.06) 85%, 
-            rgba(255,255,255,0.01));
-    }
-
-    .dark-theme .cv-sidebar {
-        box-shadow: inset -1px 0 0 rgba(255,255,255,0.03);
-        background-color: var(--bg-sidebar);
-        background-image: linear-gradient(to bottom left, 
-            rgba(0, 0, 0, 0.2), 
-            rgba(0, 0, 0, 0));
-    }
-
-    .dark-theme .cv-main {
-        background-image: linear-gradient(to bottom right, 
-            rgba(255, 255, 255, 0.01), 
-            rgba(0, 0, 0, 0.05));
-    }
-
-    .dark-theme .reference-card {
-        background-color: rgba(var(--bg-sidebar-rgb), 0.6);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .dark-theme .details-item {
-        background-color: rgba(31, 41, 55, 0.6);
-        ring-color: var(--border-color);
-    }
-
-    .dark-theme .skill-item::before,
-    .dark-theme .achievement-item::before {
-        color: var(--accent-color);
-        opacity: 0.9;
-    }
-
-    .dark-theme a:hover {
-        color: var(--primary-hover);
-        opacity: 0.95;
-    }
-    
-    /* Special handling for references/contact info */
-    .dark-theme .reference-contact {
-        color: #93c5fd; /* Blue-300 */
-        font-weight: 500;
-    }
-    
-    .dark-theme .reference-contact:hover {
-        color: #bfdbfe; /* Blue-100 */
-        text-decoration: underline;
-    }
-
-    .dark-theme .job-title {
-        color: #e0f2fe; /* Blue-50 - makes job titles stand out */
-    }
-
-    /* Enhanced visibility for details values (addresses & contact info) */
-    .dark-theme .details-value {
-        color: #f8fafc; /* Slate-50 - brightest white for maximum contrast */
-        font-weight: 450;
-    }
-
-    /* Better link contrast for dark theme */
-    .dark-theme a {
-        color: #93c5fd; /* Blue-300 - brighter */
-    }
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-sidebar: #f1f5f9;
+  --bg-card: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --accent-color: #3b82f6;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
-/* Responsive Adjustments */
-@screen sm {
-    .cv-grid {
-        @apply grid-cols-12;
-    }
+.theme--light {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-sidebar: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --accent-color: #818cf8;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
-@screen lg {
-    .cv-container {
-        @apply max-w-5xl;
-    }
+.dark-theme {
+  --primary-color: #93c5fd;
+  --primary-hover: #60a5fa;
+  --bg-main: #111827;
+  --bg-card: #1f2937;
+  --bg-sidebar: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --accent-color: #60a5fa;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  --bg-sidebar-rgb: 30, 41, 59;
+  color-scheme: dark;
 }
 
-/* Layout and background */
 body {
-    @apply m-0 p-0 min-h-screen;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background: var(--bg-secondary);
 }
 
-.page-container {
-    @apply relative grid grid-cols-3 min-h-screen;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
-/* Left section with gray background */
-.left-section {
-    @apply bg-gray-50 min-h-screen relative;
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
 }
 
-.left-content {
-    @apply py-8 px-8;
+a:hover {
+  color: var(--primary-hover);
 }
 
-/* Right section */
-.right-section {
-    @apply col-span-2 bg-white relative;
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.right-content {
-    @apply py-8 px-8;
+p {
+  margin: 0;
+  line-height: normal;
 }
 
-/* Content spacing */
-.content-wrapper {
-    @apply mt-32;
+@page {
+  size: A4;
+  margin: 0;
 }
 
-/* Base layout */
-body {
-    @apply m-0 p-0 min-h-screen;
-}
-
-/* Section styling */
-.section-container {
-    @apply mb-4 last:mb-0;
-}
-
-/* Main container */
 .cv-container {
-    @apply relative min-h-screen;
+  max-width: 64rem;
+  margin: 0 auto;
+  width: 210mm;
+  min-height: 297mm;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease-in-out;
 }
 
-/* Header section */
-.header-section {
-    @apply absolute top-0 left-0 right-0 bg-white py-6 z-10;
+.cv-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  min-height: 100%;
+  border-left: 1px solid var(--border-color);
+  position: relative;
 }
 
-.header-content {
-    @apply text-center;
+.cv-grid::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 33.333%;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.01), rgba(0,0,0,0.05) 15%, rgba(0,0,0,0.05) 85%, rgba(0,0,0,0.01));
+  z-index: 2;
 }
 
-/* Left column */
-.left-column {
-    @apply pt-28 px-6;  /* Adjust pt based on header height */
+.cv-sidebar {
+  grid-column: span 4;
+  padding: 1.5rem;
+  background: var(--bg-sidebar);
+  position: relative;
+  box-shadow: inset -1px 0 0 rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-/* Right column */
-.right-column {
-    @apply col-span-2 pt-28 px-6 bg-white;  /* Adjust pt based on header height */
+.cv-main {
+  grid-column: span 8;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-/* Other styles remain the same */
-.dark-theme .reference-card, 
-.dark-theme .details-item,
-.dark-theme .cv-sidebar {
-    background-color: rgba(17, 24, 39, 0.4); /* Dark theme adjustments */
+.cv-header {
+  grid-column: span 12;
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+  z-index: 10;
 }
 
-/* Dark theme specific adjustments */
+.cv-header h1 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  max-width: 90%;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.details-item {
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  background: var(--bg-card);
+  box-shadow: 0 0 0 1px var(--border-color);
+}
+
+.details-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.details-value {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skill-item {
+  font-size: 0.875rem;
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  transition: transform 0.15s ease-in-out;
+}
+
+.skill-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+}
+
+.job-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.job-entry:last-child {
+  margin-bottom: 0;
+}
+
+.job-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.job-title {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.job-period {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.job-description {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.job-section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.25rem;
+  color: var(--text-primary);
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+}
+
+.achievement-item {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.achievement-item::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+}
+
+.reference-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.reference-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgba(241, 245, 249, 0.5);
+  box-shadow: 0 0 0 1px var(--border-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reference-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.reference-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.reference-position {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.reference-contact {
+  font-size: 0.875rem;
+  color: var(--primary-color);
+  transition: color 0.2s;
+}
+
+.reference-contact:hover {
+  color: var(--primary-hover);
+}
+
+.portfolio-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.portfolio-link::after {
+  content: '↗';
+  margin-left: 0.125rem;
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+@media print {
+  .cv-container {
+    box-shadow: none;
+    margin: 0;
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .cv-sidebar {
+    background-color: rgba(241, 245, 249, 0.9) !important;
+  }
+
+  hr {
+    opacity: 0.4;
+  }
+
+  * {
+    transition: none !important;
+  }
+
+  .cv-container,
+  .reference-card,
+  .details-item {
+    box-shadow: none !important;
+  }
+}
+
 .dark-theme .cv-container {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
 .dark-theme .section-title {
-    color: var(--primary-color);
-    border-color: var(--border-color);
-    opacity: 0.95;
+  border-color: var(--border-color);
+  opacity: 0.95;
 }
 
 .dark-theme .cv-header {
-    border-bottom-color: var(--border-color);
+  background: linear-gradient(180deg, rgba(31,41,55,0.95) 0%, rgba(17,24,39,0.6) 100%);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+}
+
+.dark-theme .cv-header h1 {
+  color: #f1f5f9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .cv-grid::after {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.01), rgba(255,255,255,0.06) 15%, rgba(255,255,255,0.06) 85%, rgba(255,255,255,0.01));
+}
+
+.dark-theme .cv-sidebar {
+  box-shadow: inset -1px 0 0 rgba(255,255,255,0.03);
+  background-image: linear-gradient(to bottom left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+}
+
+.dark-theme .cv-main {
+  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.01), rgba(0, 0, 0, 0.05));
+}
+
+.dark-theme .reference-card,
+.dark-theme .details-item,
+.dark-theme .cv-sidebar {
+  background-color: rgba(17, 24, 39, 0.4);
 }
 
 .dark-theme .reference-card {
-    background-color: rgba(var(--bg-sidebar-rgb), 0.6);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .dark-theme .details-item {
-    background-color: rgba(31, 41, 55, 0.6);
-    ring-color: var(--border-color);
+  background-color: rgba(31, 41, 55, 0.6);
 }
 
 .dark-theme .skill-item::before,
 .dark-theme .achievement-item::before {
-    color: var(--accent-color);
-    opacity: 0.9;
+  color: var(--accent-color);
+  opacity: 0.9;
 }
 
 .dark-theme a:hover {
-    color: var(--primary-hover);
-    opacity: 0.95;
-} 
+  color: var(--primary-hover);
+  opacity: 0.95;
+}
+
+.dark-theme .reference-contact {
+  color: #93c5fd;
+  font-weight: 500;
+}
+
+.dark-theme .reference-contact:hover {
+  color: #bfdbfe;
+  text-decoration: underline;
+}
+
+.dark-theme .job-title {
+  color: #e0f2fe;
+}
+
+.dark-theme .details-value {
+  color: #f8fafc;
+  font-weight: 450;
+}
+
+.dark-theme a {
+  color: #93c5fd;
+}

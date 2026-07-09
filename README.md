@@ -1,6 +1,6 @@
 # Markdown CV Generator
 
-A modern, minimalist CV/resume generator that converts markdown to beautifully styled PDF documents. Built with Node.js, Express, and Tailwind CSS.
+A modern, minimalist CV/resume generator that converts markdown to styled PDF documents. Built with Node.js, Express, and Tailwind CSS.
 
 ## Features
 
@@ -47,7 +47,7 @@ Generate with the new soft light theme (easier on the eyes):
 markdowncv -build --light
 ```
 
-The generated PDF will be saved as `[title]-[name]-resume.pdf` in the project root.
+The generated PDF saves as `[title]-[name]-resume.pdf` in the project root.
 
 Example: 
 ![Developer Resume](developer-john-doe-resume-1.png)
@@ -63,7 +63,7 @@ npm run dev
 This will:
 - Start a local server at http://localhost:3000
 - Watch for changes in your markdown and CSS files
-- Auto-reload when changes are detected
+- Auto-reload on changes
 
 To preview different themes in development mode:
 ```
@@ -132,7 +132,7 @@ program
 
 ### Windows Subsystem for Linux (WSL)
 
-When running in WSL, you may encounter issues with Chrome/Puppeteer for PDF generation. Here's how to use the tool in WSL:
+When running in WSL, you may encounter issues with browser-based PDF generation. Here's how to use the tool in WSL:
 
 #### Option 1: Using the WSL Wrapper Script
 
@@ -146,9 +146,9 @@ chmod +x run-markdowncv.sh
 ./run-markdowncv.sh -build --default
 ```
 
-#### Option 2: Install Chrome Dependencies
+#### Option 2: Install Browser Dependencies
 
-To enable full PDF generation in WSL, install the necessary Chrome dependencies:
+To enable full PDF generation in WSL, install the necessary dependencies:
 
 For Ubuntu 22.04 and earlier:
 ```bash
@@ -174,7 +174,7 @@ This will create a `.html` file that you can open in a browser and print to PDF 
 
 ## Technical Details
 
-- **PDF Generation**: Uses Puppeteer for high-quality PDF export
+- **PDF Generation**: Uses Puppeteer with Firefox for high-quality PDF export
 - **Markdown Processing**: markdown-it for parsing
 - **Styling**: Tailwind CSS for utility-first styling
 - **Development**: Express server with hot reload
@@ -182,18 +182,18 @@ This will create a `.html` file that you can open in a browser and print to PDF 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
+2. Create your feature branch: `git checkout -b feature/your-feature-name`
+3. Commit your changes: `git commit -m 'Add your feature'`
+4. Push to the branch: `git push origin feature/your-feature-name`
 5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
 
 - Built with Node.js and Express
 - Styled with Tailwind CSS
-- PDF generation powered by Puppeteer
+- PDF generation powered by Puppeteer with Firefox
 - Markdown parsing by markdown-it
