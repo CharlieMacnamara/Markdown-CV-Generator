@@ -21,10 +21,10 @@ Requires Node 22. The browser is downloaded once into `~/.cache/puppeteer`.
 Copy `input.example.md` to `input.md` and edit with your CV content. The CLI reads `input.md` by default, falling back to `example.md`.
 
 ```bash
-markdowncv build --default              # Light theme
-markdowncv build --default-dark         # Dark theme
-markdowncv build --light                # Soft light theme
-markdowncv build --default --html-only  # HTML only, no PDF
+markdowncv build --default                 # Light theme
+markdowncv build --default-dark            # Dark theme
+markdowncv build --light                   # Soft light theme
+markdowncv build --default --html-only     # HTML only, no PDF
 markdowncv build --default --input my-cv.md  # Custom input file
 ```
 
@@ -43,7 +43,7 @@ npm test             # Run integration tests
 ```
 ├── input.md              # Your CV (gitignored — personal data stays local)
 ├── input.example.md      # Distributable template example
-├── example.md            # Legacy example (also works as fallback)
+
 ├── src/
 │   ├── cli.js            # CLI entry point (commander) — reads input.md first
 │   ├── template.js       # HTML generation from markdown
