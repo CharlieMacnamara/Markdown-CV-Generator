@@ -4,7 +4,6 @@ const puppeteer = require('puppeteer');
 const { PDFDocument } = require('pdf-lib');
 const { generateHTML } = require('../../src/template');
 
-const CHROME_PATH = path.join(__dirname, '..', '..', 'chrome', 'linux-150.0.7871.115', 'chrome-linux64', 'chrome');
 const FIXTURES = path.join(__dirname, '..', 'fixtures');
 
 async function getPDFPageCount(pdfPath) {
@@ -18,9 +17,9 @@ describe('PDF Generation — 1-page determinism', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
+      browser: 'firefox',
       headless: true,
-      executablePath: CHROME_PATH,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
   }, 30000);
 

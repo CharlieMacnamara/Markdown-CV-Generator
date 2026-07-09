@@ -14,9 +14,9 @@
     "postinstall": "chmod +x src/cli.js"
   },
   "dependencies": {
-    "tailwindcss": "^4.3.2",
+    "@tailwindcss/cli": "^4.3.2",
     "@tailwindcss/postcss": "^4.3.2",
-    "commander": "^11.1.0",
+    "commander": "^15.0.0",
     "express": "^5.2.1",
     "markdown-it": "^14.3.0",
     "picocolors": "^1.1.1",

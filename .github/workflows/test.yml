@@ -1,15 +1,44 @@
-name: Test
-on: [push, pull_request]
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
         with:
-          node-version: 22
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
           cache: npm
-      - run: npm ci
-      - run: npm run build:css
-      - run: npm test
+
+      - name: Cache Puppeteer browser
+        uses: actions/cache@v4
+        id: cache-puppeteer
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-firefox-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        run: PUPPETEER_BROWSER=firefox npm ci --no-audit --no-fund
+
+      - name: Build CSS
+        run: npm run build:css
+
+      - name: Run tests
+        run: PUPPETEER_BROWSER=firefox npm test
+        env:
+          NODE_OPTIONS: --experimental-vm-modules
